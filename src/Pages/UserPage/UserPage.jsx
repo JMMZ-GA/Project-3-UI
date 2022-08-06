@@ -16,7 +16,7 @@ const UserPage = ({
   const [userPins, setUserPins] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/pins/userpage/${user._id}`)
+    fetch(`https://jmmz-ga-p3places-backend.herokuapp.com/pins/userpage/${user._id}`)
       .then((res) => res.json())
       .then((data) => setUserPins(data));
   }, []);
@@ -24,7 +24,7 @@ const UserPage = ({
   return (
     <> 
     <div className="userHeader">
-      <h2>{pinInfo.Owner?.username.toUpperCase()}'S PINS:</h2>
+      <h2>{user?.username.toUpperCase()}'S PINS:</h2>
     </div>
     <div className="outerContainer">
       <div className="map">

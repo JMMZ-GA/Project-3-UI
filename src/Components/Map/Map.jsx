@@ -11,17 +11,6 @@ import {
 import { Link } from "react-router-dom";
 import "./Map.css";
 
-// let center = {
-//   lat: position.coords.latitude,
-//   lng: position.coords.longitude,
-// };
-// const setGeoLoc = () => {
-//   navigator.geolocation.getCurrentPosition((position) => {
-//     sessionStorage.setItem("lat", JSON.stringify(position.coords.latitude));
-//     sessionStorage.setItem("lng", JSON.stringify(position.coords.longitude));
-//   });
-// };
-
 const mapContainerStyle = {
   width: "100vw",
   height: "80vh",
@@ -48,25 +37,14 @@ const Map = ({
   allPins,
   pinInfo,
   setPinInfo,
-  searchBar,
 }) => {
-  console.log(userCenter);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API,
   });
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
-
-  const searchedPins = allPins.filter(function (el) {
-    return (
-      el.name.includes(searchBar.qeury) ||
-      el.address.includes(searchBar.query) ||
-      el.city.includes(searchBar.query) ||
-      el.description.includes(searchBar.query) ||
-      el.Owner?.username.includes(searchBar.query)
-    );
-  });
+  if (!latLng) return "Loading";
 
   return (
     <GoogleMap
@@ -97,11 +75,6 @@ const Map = ({
             featureType: "administrative.locality",
             elementType: "labels.text.fill",
             stylers: [{ color: "#b8845d" }],
-          },
-          {
-            "featureType": "administrative",
-            "elementType": "geometry.fill",
-            stylers: [{ color: "#463e39" }],
           },
           {
             featureType: "poi.park",
@@ -166,7 +139,7 @@ const Map = ({
         ],
       }}
     >
-      {searchedPins?.map((location, i) => {
+      {allPins.map((location, i) => {
         return (
           <Marker
             key={i}
@@ -215,7 +188,6 @@ const Map = ({
           ) : (
             <div className="placement">
               <div>
-                {/* <button>yes</button> */}
                 <Link to="/newPin">ADD A PIN</Link>
               </div>
             </div>

@@ -13,10 +13,9 @@ const Home = ({
   setAllPins,
   pinInfo,
   setPinInfo,
-  searchBar,
 }) => {
   useEffect(() => {
-    fetch(`http://localhost:3001/pins`)
+    fetch(`https://jmmz-ga-p3places-backend.herokuapp.com/pins/home`)
       .then((res) => res.json())
       .then((data) => setAllPins(data));
   }, []);
@@ -25,17 +24,12 @@ const Home = ({
     <div>
       <Sidebar allPins={allPins} pinInfo={pinInfo} setPinInfo={setPinInfo} />
 
-      <div>
-        <h2>
-          <br></br>
-        </h2>
-      </div>
-      {/* I am taking a short cut for now to fix a spacing problem. I can change this with css later */}
+    <div><h2><br></br></h2></div>
+ {/* I am taking a short cut for now to fix a spacing problem. I can change this with css later */}
 
       <div className="outerContainer">
         <div className="map">
           <Map
-            searchBar={searchBar}
             latLng={latLng}
             setLatLng={setLatLng}
             infoLatLng={infoLatLng}
