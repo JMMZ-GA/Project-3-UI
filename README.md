@@ -1,6 +1,6 @@
 PinIt by JMMZ
 
-### Your group members
+### Group members
 
 Jose Rafael Kaibigan
 <br>
@@ -10,11 +10,14 @@ Megan Hawkins
 <br>
 Myndra Aaron Jr.
 
-### Your project idea
-
-> Brief 2-3 sentence description of your app
+### Project Description
 
 Social app where users can see a map of people’s favorite places. These places are pins of locations that users can select and add to their profile. Pins are categorized by cities, so users will have profile pages that list their pins. We will use Google Maps API to be able to search for locations as well as render a map.
+
+
+## Deployed Link:
+https://jmmz-ga-p3places-ui.herokuapp.com/
+
 
 ### List of models and their properties
 
@@ -47,6 +50,31 @@ Pins {
 Scrum Manager - Jose Rafael Kaibigan
 <br>
 Git Manager - Zachary Miller
+
+
+### SCREENSHOTS:
+
+Welcome Page / Home Route:
+![alt text](assets/pinit_landingPage.png)
+
+Login Page:
+![alt text](assets/pinit_loginPage.png)
+
+Signup Page:
+![alt text](assets/pinit_signupPage.png)
+
+Index page that displays all the pins from all the users. Includes Search bar that allows user to search for keywords for pins.
+![alt text](assets/pinit_homemapPage.png)
+
+This page only displays pins created by the signed in user (Profile Page)
+![alt text](assets/pinit_profilePage.png)
+
+Form page to create new pins. Includes search bar that autocompletes places with an address (Google Maps Places API) and Drag and drop feature to upload images.
+![alt text](assets/pinit_newPinFormPage.png)
+
+Sidebar that shows a list view of the pins on the map.
+![alt text](assets/pinit_sidebar.png)
+
 
 ### User stories
 
