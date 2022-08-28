@@ -123,7 +123,7 @@ As a user, I would like to be able to add images to my pins.
 
 ### Wireframes
 
-![alt text](Project-3-UI/public/placesWireframe.png)
+![alt text](public/placesWireframe.png)
 
 <br>
 
