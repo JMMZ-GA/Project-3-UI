@@ -5,10 +5,10 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import { library } from '@fortawesome/fontawesome-svg-core'
-  import { fab } from '@fortawesome/free-brands-svg-icons'
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../NewPinForm/NewPinForm.css";
 import { useDropzone } from "react-dropzone";
 
@@ -65,7 +65,10 @@ const EditPinForm = ({ pinInfo, setPinInfo, latLng, user }) => {
     acceptedFiles.forEach(async (acceptedFile) => {
       const imageData = new FormData();
       imageData.append("file", acceptedFile);
-      imageData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+      imageData.append(
+        "upload_preset",
+        process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+      );
       const response = await fetch(url, {
         method: "POST",
         body: imageData,
@@ -85,7 +88,7 @@ const EditPinForm = ({ pinInfo, setPinInfo, latLng, user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`https://jmmz-ga-p3places-backend.herokuapp.com/pins/${pinInfo._id}`, formData)
+      .put(`http://localhost:3001/pins/${pinInfo._id}`, formData)
       .then((res) => {
         setFormData({
           name: "",
@@ -128,18 +131,23 @@ const EditPinForm = ({ pinInfo, setPinInfo, latLng, user }) => {
   });
 
   return (
-    <div className="pins">
-      <form id="eform" onSubmit={handleSubmit}>
+    <div className='pins'>
+      <form id='eform' onSubmit={handleSubmit}>
         <PlacesAutocomplete
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}
         >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div id="ac">
-              <div className="ac">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-              <input {...getInputProps({ placeholder: "Type Address" })} />
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading,
+          }) => (
+            <div id='ac'>
+              <div className='ac'>
+                <FontAwesomeIcon icon='fa-solid fa-magnifying-glass' />
+                <input {...getInputProps({ placeholder: "Type Address" })} />
               </div>
 
               <div>
@@ -168,88 +176,86 @@ const EditPinForm = ({ pinInfo, setPinInfo, latLng, user }) => {
         {/* Form should populate the current pin being edited's information */}
         {/* value can be pinInfo.xxxx but take out the search bar. User will just have to edit whats currently avaiable. If user wants a whole new pin, they can delete this pin and create a new one. */}
 
-        <div id="einputs">
-          
-          <div className="ediv">
-              <label htmlFor="name">Name of location</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder={pinInfo.name}
-                value={locationName.length < 1 ? formData.name : locationName}
-                onChange={handleChange}
-              />
+        <div id='einputs'>
+          <div className='ediv'>
+            <label htmlFor='name'>Name of location</label>
+            <input
+              type='text'
+              name='name'
+              id='name'
+              placeholder={pinInfo.name}
+              value={locationName.length < 1 ? formData.name : locationName}
+              onChange={handleChange}
+            />
           </div>
 
-          <div className="ediv">
-              <label htmlFor="address">Address</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder={pinInfo.address}
-                value={address.length < 1 ? formData.address : address}
-                onChange={handleChange}
-              />
+          <div className='ediv'>
+            <label htmlFor='address'>Address</label>
+            <input
+              type='text'
+              name='address'
+              id='address'
+              placeholder={pinInfo.address}
+              value={address.length < 1 ? formData.address : address}
+              onChange={handleChange}
+            />
           </div>
 
-          <div className="ediv">
-              <label htmlFor="city">City</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder={pinInfo.city}
-                value={city.length < 1 ? formData.city : city}
-                onChange={handleChange}
-              />
+          <div className='ediv'>
+            <label htmlFor='city'>City</label>
+            <input
+              type='text'
+              name='city'
+              id='city'
+              placeholder={pinInfo.city}
+              value={city.length < 1 ? formData.city : city}
+              onChange={handleChange}
+            />
           </div>
 
-            <div className="ediv">
-              <label htmlFor="description">Description</label>
-              <input
-                type="text"
-                name="description"
-                id="description"
-                placeholder={pinInfo.description}
-                onChange={handleChange}
-              />
-            </div>
+          <div className='ediv'>
+            <label htmlFor='description'>Description</label>
+            <input
+              type='text'
+              name='description'
+              id='description'
+              placeholder={pinInfo.description}
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
-            <input
-              type="hidden"
-              name="lat"
-              value={latLng.lat}
-              onChange={handleChange}
-            />
-            <input
-              type="hidden"
-              name="lng"
-              value={latLng.lng}
-              onChange={handleChange}
-            />
+        <input
+          type='hidden'
+          name='lat'
+          value={latLng.lat}
+          onChange={handleChange}
+        />
+        <input
+          type='hidden'
+          name='lng'
+          value={latLng.lng}
+          onChange={handleChange}
+        />
 
-            <input
-              type="hidden"
-              name="image"
-              value={uploadedFiles?.secure_url}
-              onChange={handleChange}
-            />
-
+        <input
+          type='hidden'
+          name='image'
+          value={uploadedFiles?.secure_url}
+          onChange={handleChange}
+        />
 
         <div {...getRootProps()} className={`dropzone`}>
           <input
             {...getInputProps}
             value={uploadedFiles?.secure_url}
-            type="hidden"
+            type='hidden'
           />
           DROP AN IMAGE HERE
         </div>
 
-            <input type="submit" value="Mark It Down" className="button ebutton"/>
-        </form>
+        <input type='submit' value='Mark It Down' className='button ebutton' />
+      </form>
     </div>
   );
 };

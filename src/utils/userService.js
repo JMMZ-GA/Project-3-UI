@@ -3,7 +3,7 @@ import tokenService from "./tokenService";
 const BASE_URL = "/";
 
 function login(creds) {
-  return fetch("https://jmmz-ga-p3places-backend.herokuapp.com/login", {
+  return fetch("http://localhost:3001/login", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(creds),
@@ -17,7 +17,7 @@ function login(creds) {
 }
 
 function signup(user) {
-  return fetch("https://jmmz-ga-p3places-backend.herokuapp.com/signup", {
+  return fetch("http://localhost:3001/signup", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(user),

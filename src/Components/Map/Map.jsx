@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+
 import {
   Googleap,
   useLoadScript,
@@ -197,9 +197,9 @@ const Map = ({
               <Link to={`/pins/${pinInfo._id}`}>View More</Link>
             </div>
           ) : (
-            <div className="placement">
+            <div className='placement'>
               <div>
-                <Link to="/newPin">ADD A PIN</Link>
+                <Link to='/newPin'>ADD A PIN</Link>
               </div>
             </div>
           )}

@@ -60,7 +60,10 @@ const NewPinForm = ({ latLng, user }) => {
     acceptedFiles.forEach(async (acceptedFile) => {
       const imageData = new FormData();
       imageData.append("file", acceptedFile);
-      imageData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+      imageData.append(
+        "upload_preset",
+        process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+      );
       const response = await fetch(url, {
         method: "POST",
         body: imageData,
@@ -90,7 +93,7 @@ const NewPinForm = ({ latLng, user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post("https://jmmz-ga-p3places-backend.herokuapp.com/pins", formData).then((res) => {
+    axios.post("http://localhost:3001/pins", formData).then((res) => {
       console.log(res);
       setFormData({
         name: "",
@@ -138,8 +141,8 @@ const NewPinForm = ({ latLng, user }) => {
   };
 
   return (
-    <div className="pins">
-      <form onSubmit={handleSubmit} id="pform">
+    <div className='pins'>
+      <form onSubmit={handleSubmit} id='pform'>
         <PlacesAutocomplete
           value={address}
           onChange={setAddress}
@@ -151,9 +154,9 @@ const NewPinForm = ({ latLng, user }) => {
             getSuggestionItemProps,
             loading,
           }) => (
-            <div id="ac">
-              <div className="ac">
-                <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+            <div id='ac'>
+              <div className='ac'>
+                <FontAwesomeIcon icon='fa-solid fa-magnifying-glass' />
                 <input {...getInputProps({ placeholder: "Search Address" })} />
               </div>
 
@@ -167,7 +170,8 @@ const NewPinForm = ({ latLng, user }) => {
                   return (
                     <div
                       key={i}
-                      {...getSuggestionItemProps(suggestion, { style })}>
+                      {...getSuggestionItemProps(suggestion, { style })}
+                    >
                       {" "}
                       {suggestion.description}{" "}
                     </div>
@@ -178,79 +182,79 @@ const NewPinForm = ({ latLng, user }) => {
           )}
         </PlacesAutocomplete>
 
-        <div id="pinputs">
-          <div className="pdiv">
-            <label htmlFor="name">Name of location</label>
+        <div id='pinputs'>
+          <div className='pdiv'>
+            <label htmlFor='name'>Name of location</label>
             <input
-              type="text"
-              name="name"
-              id="name"
+              type='text'
+              name='name'
+              id='name'
               value={formData.name}
               onChange={handleChange}
             />
           </div>
 
-          <div className="pdiv">
-            <label htmlFor="address">Address</label>
+          <div className='pdiv'>
+            <label htmlFor='address'>Address</label>
             <input
-              type="text"
-              name="address"
-              id="address"
+              type='text'
+              name='address'
+              id='address'
               value={formData.address}
               onChange={handleChange}
             />
           </div>
 
-          <div className="pdiv">
-            <label htmlFor="city">City</label>
+          <div className='pdiv'>
+            <label htmlFor='city'>City</label>
             <input
-              type="text"
-              name="city"
-              id="city"
+              type='text'
+              name='city'
+              id='city'
               value={formData.city}
               onChange={handleChange}
             />
           </div>
 
-          <div className="pdiv">
-            <label htmlFor="description">Description</label>
+          <div className='pdiv'>
+            <label htmlFor='description'>Description</label>
             <textarea
-              name="description"
-              id="description"
+              name='description'
+              id='description'
               onChange={handleChange}
             />
           </div>
         </div>
 
         <input
-          type="hidden"
-          name="lat"
+          type='hidden'
+          name='lat'
           value={latLng.lat}
           onChange={handleChange}
         />
         <input
-          type="hidden"
-          name="lng"
+          type='hidden'
+          name='lng'
           value={latLng.lng}
           onChange={handleChange}
         />
         <input
-          type="hidden"
-          name="Owner"
+          type='hidden'
+          name='Owner'
           value={user._id}
           onChange={handleChange}
         />
 
         <input
-          type="hidden"
-          name="image"
+          type='hidden'
+          name='image'
           value={uploadedFiles?.secure_url}
           onChange={handleChange}
         />
 
         <input
-          type="hidden"
-          name="image_id"
+          type='hidden'
+          name='image_id'
           value={uploadedFiles?.public_id}
           onChange={handleChange}
         />
@@ -259,14 +263,13 @@ const NewPinForm = ({ latLng, user }) => {
           <input
             {...getInputProps}
             value={uploadedFiles?.secure_url}
-            type="hidden"
+            type='hidden'
           />
           DROP AN IMAGE HERE
         </div>
 
-        <input type="submit" value="Mark It Down" className="button pbutton" />
+        <input type='submit' value='Mark It Down' className='button pbutton' />
       </form>
-
     </div>
   );
 };
